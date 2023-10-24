@@ -14,6 +14,7 @@ const mongoModel = mongoose.model("users", Schema);
 // for inserting data by json
 app.use(express.json())
 
+
 // For html form
 app.use(express.urlencoded({ extended: true }));
 
