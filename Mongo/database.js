@@ -9,6 +9,7 @@ const Schema = new mongoose.Schema({
   name: String,
   pass: String,
 });
+
 const mongoModel = mongoose.model("users", Schema);
 // for inserting data by json
 app.use(express.json())
