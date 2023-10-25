@@ -1,4 +1,5 @@
 const express = require('express');
+const bcrypt = require("bcryptjs")
 const { User } = require('../models/db');
 const router = express.Router()
 router.get("/users", async (req, res) => {
@@ -10,20 +11,28 @@ router.get("/users", async (req, res) => {
   }
 });
 
-router.post("/users", async (req, res) => {
+router.post("/users/signup", async (req, res) => {
+  let { username, password } = req.body;
+  if(!username || !password){
+    res.send(400).json({message:"Username and password are required"})
+  }
+  
   try {
-    let { username, password } = req.body;
-    let newUser = new User({ username, password });
+    let hash = await bcrypt.hash(password, 10)
+    let newUser =  new User({ username, password:hash });
     await newUser.save();
     res.status(201).send(newUser);
   } catch (err) {
     res.send(err).status(500);
   }
 });
-router.put("/users/:id", async (req, res) => {
+router.put("/users/update/:id", async (req, res) => {
+  let { username, password } = req.body;
+  let { id } = req.params;
+  if(!username || !password || id){
+    res.send(400).json({message:"Username, id and password are required"})
+  }
   try {
-    let { id } = req.params;
-    let { username, password } = req.body;
     let update = await User.findByIdAndUpdate(id, {
       $set: { username: username, password: password },
     });
@@ -34,8 +43,11 @@ router.put("/users/:id", async (req, res) => {
 });
 
 router.delete("/users/:id", async (req, res) => {
+  let { id } = req.params;
+  if(!id){
+    res.send(400).json({ message:"Id is required"})
+  }
   try {
-    let { id } = req.params;
     let deleted = await User.findByIdAndDelete(id);
     res.send(deleted).status(204);
   } catch (err) {

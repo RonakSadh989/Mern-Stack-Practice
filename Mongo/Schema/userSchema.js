@@ -11,6 +11,31 @@ const userSchema = new mongoose.Schema({
     },
     follower:{
         type: Array,
+    },
+    following:{
+        type: Array,
     }
 })
-module.exports = {userSchema}
+const blogSchema = new mongoose.Schema({
+    userId: {
+        type: String,
+        required: true
+    }, 
+    username:{
+        type: String,
+        required: true
+    },
+    title:{
+        type: String,
+        required: true
+    },
+    blog:{
+        type: String,
+        required: true
+    },
+    date: {
+        type: Date,
+        default: Date.now
+    }
+})
+module.exports = {userSchema, blogSchema}

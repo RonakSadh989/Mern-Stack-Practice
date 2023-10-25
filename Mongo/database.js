@@ -14,6 +14,7 @@ app.use(express.static("./public"));
 // for Routes
 app.use("/api", require("./routes/UserRoute"))
 app.use("/api", require("./routes/accountRoute"))
+app.use("/api", require("./routes/blogRoute"))
 
 
 app.listen(3000, () => {
