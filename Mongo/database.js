@@ -12,7 +12,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("./public"));
 
 // for Routes
-app.use(require("./routes/route"))
+app.use("/api", require("./routes/UserRoute"))
+app.use("/api", require("./routes/accountRoute"))
 
 
 app.listen(3000, () => {

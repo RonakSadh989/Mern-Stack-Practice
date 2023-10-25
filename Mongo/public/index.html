@@ -8,9 +8,16 @@
   <body>
     <form action="/users" method="POST">
       <input type="text" placeholder="name" name="name" id="name"/>
-      <input type="text" placeholder="password" name="pass" id="pass" />
+      <input type="text" placeholder="password" name="password" id="password" />
       <input type="submit" value="Submit"/>
     </form>
+    <form action="/follow" method="POST">
+      <input type="text" placeholder="name" name="name" id="name"/>
+      <input type="submit" value="Submit"/>
+    </form>
+
+    <a href="/users">Users</a>
+    <a href="/blogs">Blogs</a>
 
     <script>
       // function onClick(){

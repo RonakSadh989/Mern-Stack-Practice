@@ -12,8 +12,8 @@ router.get("/users", async (req, res) => {
 
 router.post("/users", async (req, res) => {
   try {
-    let { name, password } = req.body;
-    let newUser = new User({ name, password });
+    let { username, password } = req.body;
+    let newUser = new User({ username, password });
     await newUser.save();
     res.status(201).send(newUser);
   } catch (err) {
@@ -23,9 +23,9 @@ router.post("/users", async (req, res) => {
 router.put("/users/:id", async (req, res) => {
   try {
     let { id } = req.params;
-    let { name, password } = req.body;
+    let { username, password } = req.body;
     let update = await User.findByIdAndUpdate(id, {
-      $set: { name: name, password: password },
+      $set: { username: username, password: password },
     });
     res.send(update).status(202);
   } catch (err) {
