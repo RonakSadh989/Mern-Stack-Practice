@@ -29,7 +29,7 @@ const blogSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    blog:{
+    content:{
         type: String,
         required: true
     },

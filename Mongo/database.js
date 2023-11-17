@@ -1,6 +1,10 @@
 const express = require("express");
 const app = express();
+const cors = require("cors")
+// const jwtoken = require("jsonwebtoken")
 
+// Use cors middleware
+app.use(cors());
 
 // for inserting data by json
 app.use(express.json())
@@ -9,7 +13,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
 // to use the public folder
-app.use(express.static("./public"));
+app.use(express.static("./client/public"));
 
 // for Routes
 app.use("/api", require("./routes/UserRoute"))
@@ -17,6 +21,6 @@ app.use("/api", require("./routes/accountRoute"))
 app.use("/api", require("./routes/blogRoute"))
 
 
-app.listen(3000, () => {
+app.listen(8080, () => {
   console.log("Listenting to Mongo");
 });
