@@ -5,7 +5,7 @@ const { userSchema, blogSchema } = require("../Schema/userSchema");
 dotenv.config({ path: "../config.env" });
 const uri = "mongodb://127.0.0.1:27017/myDatabase";
 const uri1 = process.env.DATABASE;
-mongoose.connect(uri).then(()=>{console.log("connection done")})
+mongoose.connect(uri1).then(()=>{console.log("connection done")})
 .catch((err)=>{console.log("Error in connection", err)});
 const User = mongoose.model("users", userSchema);
 const Blog = mongoose.model("blogs", blogSchema);
