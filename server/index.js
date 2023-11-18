@@ -6,7 +6,7 @@ const cors = require("cors")
 
 // dotenv
 // dotenv.config({path:"./config.env"})
-// const Port  = process.env.PORT || 5000
+const Port  = process.env.PORT || 5000
 // Use cors middleware
 app.use(cors());
 
@@ -37,6 +37,6 @@ app.use("/api", require("./routes/blogRoute"))
 // }
 
 
-app.listen(3000, () => {
+app.listen(Port, () => {
   console.log("Listenting to Mongo on Port: ");
 });
