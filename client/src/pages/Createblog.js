@@ -27,6 +27,7 @@ const CreateBlogPage = () => {
       );
 
       if (!response.ok) {
+        document.write("no")
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
@@ -35,6 +36,7 @@ const CreateBlogPage = () => {
       navigate("/");
     } catch (error) {
       console.error("Error creating blog post:", error);
+      alert(error)
     }
   };
 
