@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // to use the public folder
 // app.use(express.static("./client/public"));
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
   res.send("Hello World")
 })
 
