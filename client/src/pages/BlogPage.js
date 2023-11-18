@@ -6,7 +6,7 @@ export default function BlogPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8080/api/blog");
+        const response = await fetch("https://mern-stack-practice-2f4mya67m-pranays-projects-73a0fcf9.vercel.app/api/blog");
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }

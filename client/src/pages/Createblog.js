@@ -16,7 +16,7 @@ const CreateBlogPage = () => {
     // Assuming you have an API endpoint to create a new blog post
     try {
       const response = await fetch(
-        "http://localhost:8080/api/blog/65393ee6016dcd2aa47feb77",
+        "https://mern-stack-practice-2f4mya67m-pranays-projects-73a0fcf9.vercel.app/api/blog/65393ee6016dcd2aa47feb77",
         {
           method: "POST",
           headers: {
