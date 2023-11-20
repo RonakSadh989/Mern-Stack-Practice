@@ -19,8 +19,12 @@ router.get("/login", async (req, res) => {
      if(!username || !password){
       res.send(400).json({message:"Username and password are required"})
     }
-    let users = await User.findOne({username, password});
-    res.status(200).send(users._id);
+    let encryptedPassword = await bcrypt.hash(password)
+    let user = await User.findOne({username, password:encryptedPassword});
+    if(!user){
+       res.send("Invalid Credentials").status(404)
+    }
+    res.status(200).send(user._id);
   } catch (err) {
     res.send(err).status(500);
   }
