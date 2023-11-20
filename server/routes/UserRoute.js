@@ -2,6 +2,8 @@ const express = require('express');
 const bcrypt = require("bcryptjs")
 const { User } = require('../models/db');
 const router = express.Router()
+
+//find all users
 router.get("/users", async (req, res) => {
   try {
     let users = await User.find();
@@ -10,7 +12,21 @@ router.get("/users", async (req, res) => {
     res.send(err).status(500);
   }
 });
+// login user
+router.get("/login", async (req, res) => {
+  try {
+     let {username, password} = req.body
+     if(!username || !password){
+      res.send(400).json({message:"Username and password are required"})
+    }
+    let users = await User.findOne({username, password});
+    res.status(200).send(users._id);
+  } catch (err) {
+    res.send(err).status(500);
+  }
+});
 
+// signup user
 router.post("/users/signup", async (req, res) => {
   let { username, password } = req.body;
   if(!username || !password){
