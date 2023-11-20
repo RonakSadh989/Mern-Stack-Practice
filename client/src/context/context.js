@@ -20,9 +20,9 @@ export const AppProvider = (props) => {
           body: JSON.stringify(body),
         });
         
-        // if (!response.ok) {
-        //   throw new Error(`HTTP error! Status: ${response.status}`);
-        // }
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
         const data = await response.json()
         return data
       } catch (error) {

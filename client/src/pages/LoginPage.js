@@ -1,25 +1,31 @@
 // LoginPage.js
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import '../css/LoginPage.css'; // Import the CSS file
-import { useAppContext } from '../context/context';
+import "../css/LoginPage.css"; // Import the CSS file
+import { useAppContext } from "../context/context";
 
 const LoginPage = () => {
-  const context =   useAppContext()
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const context = useAppContext();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    let body = {username, password}
-   const data =  context.fetchApi("/users/login", "POST", body).then((data)=>{
-       console.log(data)
-   })
-     };
+    let body = { username, password };
+    const data = context
+      .fetchApi("/users/login", "POST", body)
+      .then((data) => {
+        localStorage.setItem("_userID", data);
+        navigate("/")
+    })
+      .catch((error) => {
+        setError(error);
+      });
+  };
 
   return (
     <div className="login-page">
