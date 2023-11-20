@@ -13,18 +13,23 @@ router.get("/users", async (req, res) => {
   }
 });
 // login user
-router.get("/login", async (req, res) => {
+router.post("/users/login", async (req, res) => {
   try {
      let {username, password} = req.body
      if(!username || !password){
       res.send(400).json({message:"Username and password are required"})
     }
-    let encryptedPassword = await bcrypt.hash(password)
-    let user = await User.findOne({username, password:encryptedPassword});
+    let user = await User.findOne({username});
     if(!user){
-       res.send("Invalid Credentials").status(404)
+       res.send("Invalid Credentials").status(402)
+    }else{
+      let bcompare = await bcrypt.compare(password, user.password)
+      if(bcompare){
+        res.status(200).send(user._id);
+      }else{
+        res.status(404).send("Invalid Credentialss")
+      }
     }
-    res.status(200).send(user._id);
   } catch (err) {
     res.send(err).status(500);
   }
@@ -74,5 +79,6 @@ router.delete("/users/:id", async (req, res) => {
     res.send(err).status(500);
   }
 });
+
 
 module.exports = router

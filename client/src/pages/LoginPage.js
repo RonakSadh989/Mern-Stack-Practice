@@ -1,9 +1,12 @@
 // LoginPage.js
 
-import React, { useState, useNavigate } from 'react';
-import './LoginPage.css'; // Import the CSS file
+import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import '../css/LoginPage.css'; // Import the CSS file
+import { useAppContext } from '../context/context';
 
 const LoginPage = () => {
+  const context =   useAppContext()
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
@@ -12,31 +15,11 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
-    // Assuming you have an API endpoint for user login
-    try {
-      const response = await fetch("https://mern-stack-practice-api.vercel.app/api/login", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      // Handle successful login (for example, set a token in local storage)
-      // localStorage.setItem('token', 'yourAuthToken');
-
-      // Redirect to the home page
-      navigate('/');
-    } catch (error) {
-      setError('Invalid username or password');
-      console.error('Error logging in:', error);
-    }
-  };
+    let body = {username, password}
+   const data =  context.fetchApi("/users/login", "POST", body).then((data)=>{
+       console.log(data)
+   })
+     };
 
   return (
     <div className="login-page">

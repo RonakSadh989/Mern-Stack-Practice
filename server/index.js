@@ -38,5 +38,5 @@ app.use("/api", require("./routes/blogRoute"))
 
 
 app.listen(Port, () => {
-  console.log("Listenting to Mongo on Port: ");
+  console.log("Listenting to Mongo on Port: ", Port);
 });
