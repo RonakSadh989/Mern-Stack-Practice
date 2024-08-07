@@ -18,9 +18,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // to use the public folder
 app.use(express.static("./client/public"));
-// app.get("/", (req, res) => {
-//   res.send("Hello World. Welcome to the blog mern app API!")
-// })
+app.get("/", (req, res) => {
+  res.send("Hello World. Welcome to the blog mern app API!")
+})
 
 // for Routes
 app.use("/api", require("./routes/UserRoute"))
