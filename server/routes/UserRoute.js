@@ -8,6 +8,7 @@ router.get("/users", async (req, res) => {
   try {
     let users = await User.find();
     res.status(200).send(users);
+    console.log("helo")
   } catch (err) {
     res.send(err).status(500);
   }
