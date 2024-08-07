@@ -13,6 +13,7 @@ export const AppProvider = (props) => {
  const fetchApi = async (url, method, body)=>{
     try {
         const response = await fetch(`https://mern-stack-practice-api.vercel.app/api${url}`, {
+          // const response = await fetch(`https://localhost:5000/api${url}`, {
           method: method,
           headers: {
             'Content-Type': 'application/json',
