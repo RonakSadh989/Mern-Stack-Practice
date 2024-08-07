@@ -16,11 +16,11 @@ app.use(express.json())
 // For html form
 app.use(express.urlencoded({ extended: true }));
 
-// to use the public folder
-app.use(express.static("./client/public"));
 app.get("/", (req, res) => {
   res.send("Hello World. Welcome to the blog mern app API!")
 })
+// to use the public folder
+app.use(express.static("./client/public"));
 
 // for Routes
 app.use("/api", require("./routes/UserRoute"))
